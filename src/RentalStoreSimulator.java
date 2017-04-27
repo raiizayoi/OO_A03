@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class RentalStoreSimulator {
@@ -53,11 +54,30 @@ public class RentalStoreSimulator {
 	}
 
 	public void performSimulation() {
-
+		for (int d = 0; d <  simulateDays; d++) {
+			if (rentStore.getVideosInStore().size() <= 0)
+				continue;
+			List<Customer> legalCustomers = getLegalCustomers();
+			for (Customer c : legalCustomers) {
+				if (rentStore.getVideosInStore().size() <= 0)
+					break;
+				c.rentVideosFromStore(rentStore);
+			}
+			legalCustomers = null;
+			// customers.get(3).rentVideosFromStore(rentStore);
+			rentStore.passOneDay();
+		}
 	}
 
 	private List<Customer> getLegalCustomers() {
-		return null;
+		List<Customer> legalCustomers = new ArrayList<Customer>();
+		for (Customer c : customers) {
+			if (c.getRentedVideoCount() < rentStore.getCustMaxRentCount()
+					&& c.getMinRentVideoCount() <= rentStore.getVideosInStore().size()) {
+				legalCustomers.add(c);
+			}
+		}
+		return legalCustomers;
 	}
 
 	public void printVideosInStore() {
@@ -73,14 +93,17 @@ public class RentalStoreSimulator {
 	}
 
 	public void printCompletedRentalRecords() {
-		//List<RentalRecord> completeRRList = rentStore.getCompletedRentalRecords();
-		//System.out.println("Completed Rentals (" + completeRRList.size() + ") : ");
-
+		List<RentalRecord> completeRRList = rentStore.getCompletedRentalRecords();
+		System.out.println("Completed Rentals (" + completeRRList.size() + ") : ");
+		for (RentalRecord rr : completeRRList)
+			System.out.println("\t - " + rr.toString());
 	}
 
 	public void printActiveRentalRecords() {
-		//List<RentalRecord> activeRRList = rentStore.getActiveRentalRecords();
-		//System.out.println("Active Rentals (" + activeRRList.size() + ") : ");
+		List<RentalRecord> activeRRList = rentStore.getActiveRentalRecords();
+		System.out.println("Active Rentals (" + activeRRList.size() + ") : ");
+		for (RentalRecord rr : activeRRList)
+			System.out.println("\t - " + rr.toString());
 	}
 
 	// *** getters & setters ***
