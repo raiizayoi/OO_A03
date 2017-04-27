@@ -12,16 +12,19 @@ public class Customer {
 
 	public void rentVideosFromStore(VideoRentalStore rt) {
 
+		int rentCount = rentbehavior.getRentVideoCount();
+		int days = rentbehavior.getRentDays();
+		for (int i = 0; i < rentCount; i++) {
+			Video v = rentbehavior.pickVideo(rt.getVideosInStore());
+			rt.rentOutVideos(v, days, this);
+		}
+
 	}
 
 	// *** getters & setters ***
 
 	public void setRentBehavior(RentBehavior rb) {
 		rentbehavior = rb;
-	}
-
-	public int getRentDays() {
-		return rentbehavior.getRentDays();
 	}
 
 	public int getMinRentVideoCount() {

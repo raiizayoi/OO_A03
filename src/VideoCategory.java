@@ -8,6 +8,8 @@ public class VideoCategory {
 		this.name = categoryName;
 	}
 
+	// *** getters & setters ***
+
 	public float getRentPrice() {
 		return rentPrice;
 	}

@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Random;
 
 public class RentalStoreSimulator {
 	private int simulateDays = 0;
@@ -54,7 +53,6 @@ public class RentalStoreSimulator {
 	}
 
 	public void performSimulation() {
-		// rentStore.setVideoCatalog(videoList);
 
 	}
 
@@ -63,19 +61,26 @@ public class RentalStoreSimulator {
 	}
 
 	public void printVideosInStore() {
-
+		List<Video> vList = rentStore.getVideosInStore();
+		System.out.println("Videos in the store (" + vList.size() + ") : ");
+		for (int i = 0; i < vList.size(); i++) {
+			System.out.println("\t - " + vList.get(i).getVideoName());
+		}
 	}
 
 	public void printTurnover() {
-
+		System.out.println("Turnover : " + rentStore.getTurnover());
 	}
 
 	public void printCompletedRentalRecords() {
+		//List<RentalRecord> completeRRList = rentStore.getCompletedRentalRecords();
+		//System.out.println("Completed Rentals (" + completeRRList.size() + ") : ");
 
 	}
 
 	public void printActiveRentalRecords() {
-
+		//List<RentalRecord> activeRRList = rentStore.getActiveRentalRecords();
+		//System.out.println("Active Rentals (" + activeRRList.size() + ") : ");
 	}
 
 	// *** getters & setters ***
