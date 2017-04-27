@@ -1,0 +1,82 @@
+<Videos>
+    <Video>
+        <name>The Fate of the Furious 8</name>
+        <category>New Release</category>
+    </Video>
+    <Video>
+        <name>The Boss Baby</name>
+        <category>New Release</category>
+    </Video>
+    <Video>
+        <name>The Shape of Voice</name>
+        <category>New Release</category>
+    </Video>
+    <Video>
+        <name>Beauty and the Beast</name>
+        <category>New Release</category>
+    </Video>
+    <Video>
+        <name>Ted</name>
+        <category>Comedy</category>
+    </Video>
+    <Video>
+        <name>Movie 43</name>
+        <category>Comedy</category>
+    </Video>
+    <Video>
+        <name>American Pie 2</name>
+        <category>Comedy</category>
+    </Video>
+    <Video>
+        <name>American Pie</name>
+        <category>Comedy</category>
+    </Video>
+    <Video>
+        <name>The Purge: Election Year</name>
+        <category>Horror</category>
+    </Video>
+    <Video>
+        <name>The Conjuring 2</name>
+        <category>Horror</category>
+    </Video>
+    <Video>
+        <name>The Neon Demon</name>
+        <category>Horror</category>
+    </Video>
+    <Video>
+        <name>Lights Out</name>
+        <category>Horror</category>
+    </Video>
+    <Video>
+        <name>Citizen Kane</name>
+        <category>Drama</category>
+    </Video>
+    <Video>
+        <name>All About Eve</name>
+        <category>Drama</category>
+    </Video>
+    <Video>
+        <name>The Godfather</name>
+        <category>Drama</category>
+    </Video>
+    <Video>
+        <name>Metropolis</name>
+        <category>Drama</category>
+    </Video>
+    <Video>
+        <name>How to Be Single</name>
+        <category>Romance</category>
+    </Video>
+    <Video>
+        <name>The Lobster</name>
+        <category>Romance</category>
+    </Video>
+    <Video>
+        <name>The Choice</name>
+        <category>Romance</category>
+    </Video>
+    <Video>
+        <name>Bridget Jones's Baby</name>
+        <category>Romance</category>
+    </Video>
+</Videos>

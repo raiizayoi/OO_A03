@@ -1,0 +1,22 @@
+<VideoCategories>
+    <Category>
+        <name>New Release</name>
+        <price>5</price>
+    </Category>
+    <Category>
+        <name>Drama</name>
+        <price>3</price>
+    </Category>
+    <Category>
+        <name>Comedy</name>
+        <price>2</price>
+    </Category>
+    <Category>
+        <name>Romance</name>
+        <price>3</price>
+    </Category>
+    <Category>
+        <name>Horror</name>
+        <price>3</price>
+    </Category>
+</VideoCategories>
