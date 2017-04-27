@@ -23,9 +23,7 @@ public class OO_A03 {
 		rsSimulator.printTurnover();
 		rsSimulator.printCompletedRentalRecords();
 		rsSimulator.printActiveRentalRecords();
-
-		//yee yee
-
+		
 		// *** WRYYYYYYYYYYYYYYYYYY BOOOM
 
 		// *** yee
