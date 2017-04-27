@@ -51,7 +51,10 @@ public class VideoRentalStore {
 		RentalRecord newRecord = new RentalRecord();
 		rentalRecords.add(newRecord);
 	}
-
+	public float countRental(Video v, int days)
+	{
+		return v.getRentPrice() * (float)days;
+	}
 
 	// *** getters & setters ***
 
