@@ -1,18 +1,18 @@
 
 public class VideoCategory {
 	private float rentPrice;
-	private String categoryName;
+	private String name;
 
 	public VideoCategory(String categoryName, float rentPrice) {
 		this.rentPrice = rentPrice;
-		this.categoryName = categoryName;
+		this.name = categoryName;
 	}
 
 	public float getRentPrice() {
 		return rentPrice;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getName() {
+		return name;
 	}
 }

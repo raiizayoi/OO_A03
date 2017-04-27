@@ -25,7 +25,11 @@ public class OO_A03 {
 		rsSimulator.printActiveRentalRecords();
 
 
+
 		// *** WRYYYYYYYYYYYYYYYYYY BOOOM
+
+		// ***
+
 
 	}
 

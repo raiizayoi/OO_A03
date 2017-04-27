@@ -1,16 +1,38 @@
+import java.util.List;
 
 public class RentalRecord {
-	Video rentedVideo;
-	Customer rentCustomer;
-	int keepNights;
-	int durataion;
+	private List<Video> rentedVideos;
+	private int rentDays;
+	private Customer rentCustomer;
+	private float rental;
+	private int remainingRentDays;
+	private boolean isActive;
 
-	public void passOneDay() {
-		if (durataion > 0)
-			durataion--;
+	public void decreaseRemaingRentDays() {
+		if (isActive) {
+			remainingRentDays--;
+			if (remainingRentDays < 0)
+				isActive = false;
+		}
+
 	}
 
-	public Boolean isActived() {
-		return (durataion > 0);
+	public String toString()
+	{
+		String custString = "Customer : " + rentCustomer.getName();
+		String videosString = "Videos : ";
+		for (int i = 0 ;i < rentedVideos.size() ; i++)
+			videosString += rentedVideos.get(i).getVideoName() + " ";
+		String rentDayString = "Rent For " + rentDays +"days";
+		String rentalString = "Cost " + rental + " dollars\n";
+		return custString + " " + videosString + rentDayString + " " + rentalString;
+	}
+
+	public void returnAllVideos() {
+
+	}
+
+	public Boolean getIsActived() {
+		return isActive;
 	}
 }
