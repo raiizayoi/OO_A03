@@ -31,6 +31,11 @@ public class Customer {
 	}
 
 	// *** getters & setters ***
+	public void setRentedCount(int c)
+	{
+		rentedVideoCount = c;
+	}
+
 
 	public void setRentBehavior(RentBehavior rb) {
 		rentbehavior = rb;

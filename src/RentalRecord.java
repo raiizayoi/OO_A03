@@ -23,15 +23,16 @@ public class RentalRecord {
 	public void decreaseRemaingRentDays() {
 		if (isActive) {
 			remainingRentDays--;
-			if (remainingRentDays < 0)
+			if (remainingRentDays <= 0)
 				returning = true;
 
 		}
 	}
 
 	public void returnVideos(VideoRentalStore rentalStore) {
-		returning = false;
-		isActive = false;
+		this.returning = false;
+		this.isActive = false;
+		rentCustomer.setRentedCount(0);
 		for (Video v : rentedVideos) {
 			rentalStore.returnVideo(v);
 		}

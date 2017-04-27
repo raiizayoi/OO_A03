@@ -54,15 +54,19 @@ public class RentalStoreSimulator {
 	}
 
 	public void performSimulation() {
-		for (int d = 0; d <  simulateDays; d++) {
-			if (rentStore.getVideosInStore().size() <= 0)
-				continue;
+		for (int d = 0; d <  10/*simulateDays*/; d++) {
+			/*if (rentStore.getVideosInStore().size() <= 0)
+				continue;*/
+			System.out.print(rentStore.getVideosInStoreCount() + " ");
 			List<Customer> legalCustomers = getLegalCustomers();
-			for (Customer c : legalCustomers) {
+			int i ;
+			for (i = 0 ; i < legalCustomers.size() ; i++) {
+				Customer c = legalCustomers.get(i);
 				if (rentStore.getVideosInStore().size() <= 0)
 					break;
 				c.rentVideosFromStore(rentStore);
 			}
+			System.out.println(i);
 			legalCustomers = null;
 			// customers.get(3).rentVideosFromStore(rentStore);
 			rentStore.passOneDay();
