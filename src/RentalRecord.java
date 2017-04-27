@@ -6,7 +6,7 @@ public class RentalRecord {
 	private Customer rentCustomer;
 	private float rental;
 	private int remainingRentDays;
-	private boolean isActive;
+	public boolean isActive;
 
 	public void decreaseRemaingRentDays() {
 		if (isActive) {
@@ -28,11 +28,9 @@ public class RentalRecord {
 		return custString + " " + videosString + rentDayString + " " + rentalString;
 	}
 
-	public void returnAllVideos() {
+	// *** getters & setters ***
 
-	}
-
-	public Boolean getIsActived() {
-		return isActive;
+	public List<Video> getRentedVideos() {
+		return rentedVideos;
 	}
 }
