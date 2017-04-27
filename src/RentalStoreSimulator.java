@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RentalStoreSimulator {
 	private int simulateDays = 0;
@@ -53,11 +55,49 @@ public class RentalStoreSimulator {
 	}
 
 	public void performSimulation() {
+		int sum = 0;
+		int d = 0;
+		for (d = 0; d < simulateDays; d++) {
+			rentStore.passOneDay();
+			System.out.print("Day[" + d + "] StoreOpenVideosCount : " + rentStore.getVideosInStoreCount() + " ");
+			if (rentStore.getVideosInStore().size() <= 0) {
+				System.out.println();
+				continue;
+			}
+			List<Customer> legalCustomers = getLegalCustomers();
+			Random ran = new Random();
+			int todaysCustomerCount = ran.nextInt(legalCustomers.size()) + 1;
+			int i;
+			for (i = 0; i < todaysCustomerCount; i++) {
+				Customer c = pickRandomCostomer(legalCustomers);
+				if (rentStore.getVideosInStore().size() <= 0)
+					break;
+				c.rentVideosFromStore(rentStore);
+				legalCustomers.remove(c);
+			}
+			System.out.println("CustomerCount : " + i);
+			sum += i;
+			legalCustomers = null;			
+		}
+		System.out.println(sum + " RentalRecords in " + d + " days.");
+	}
 
+	private Customer pickRandomCostomer(List<Customer> custList) {
+		Random ran = new Random();
+		int index = ran.nextInt(custList.size());
+		Customer pickedCust = custList.get(index);
+		return pickedCust;
 	}
 
 	private List<Customer> getLegalCustomers() {
-		return null;
+		List<Customer> legalCustomers = new ArrayList<Customer>();
+		for (Customer c : customers) {
+			if (c.getRentedVideoCount() < rentStore.getCustMaxRentCount()
+					&& c.getMinRentVideoCount() <= rentStore.getVideosInStore().size()) {
+				legalCustomers.add(c);
+			}
+		}
+		return legalCustomers;
 	}
 
 	public void printVideosInStore() {
@@ -73,14 +113,17 @@ public class RentalStoreSimulator {
 	}
 
 	public void printCompletedRentalRecords() {
-		//List<RentalRecord> completeRRList = rentStore.getCompletedRentalRecords();
-		//System.out.println("Completed Rentals (" + completeRRList.size() + ") : ");
-
+		List<RentalRecord> completeRRList = rentStore.getCompletedRentalRecords();
+		System.out.println("Completed Rentals (" + completeRRList.size() + ") : ");
+		for (RentalRecord rr : completeRRList)
+			System.out.println("\t - " + rr.toString());
 	}
 
 	public void printActiveRentalRecords() {
-		//List<RentalRecord> activeRRList = rentStore.getActiveRentalRecords();
-		//System.out.println("Active Rentals (" + activeRRList.size() + ") : ");
+		List<RentalRecord> activeRRList = rentStore.getActiveRentalRecords();
+		System.out.println("Active Rentals (" + activeRRList.size() + ") : ");
+		for (RentalRecord rr : activeRRList)
+			System.out.println("\t - " + rr.toString());
 	}
 
 	// *** getters & setters ***
