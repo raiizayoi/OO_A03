@@ -17,15 +17,13 @@ public class OO_A03 {
 				35, //simulate days
 				"resources/Customers.xml" // CustomerData
 				);
-		// *** Start Simulation ***
+		// *** Perform Simulation ***
 		rsSimulator.performSimulation();
+		
+		// *** Print Results ***
 		rsSimulator.printVideosInStore();
 		rsSimulator.printTurnover();
 		rsSimulator.printCompletedRentalRecords();
 		rsSimulator.printActiveRentalRecords();
-
-		// ***
-
 	}
-
 }

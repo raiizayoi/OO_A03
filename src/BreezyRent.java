@@ -18,7 +18,6 @@ public class BreezyRent extends RentBehavior {
 
 	@Override
 	int getMinRentVideoCount() {
-		//
 		return 1;
 	}
 

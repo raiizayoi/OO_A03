@@ -22,6 +22,7 @@ public class VideoRentalStore {
 		this.setVideoCategory();
 		this.setTurnover(0);
 		videosInStore = new ArrayList<Video>(videoCatalog);
+		rentalRecords = new ArrayList<RentalRecord>();
 	}
 
 	public void loadCategoriesXml(String filePath) {
@@ -43,20 +44,36 @@ public class VideoRentalStore {
 		}
 	}
 
-	public void rentOutVideos(Video v, int days, Customer c) {
-		float rental = countRental(v, days);
-		recordRental(v, days, c, rental);
+	public void rentVideos(List<Video> vList, int days, Customer c) {
+		float rental = 0;
+		for (Video v : vList) {
+			videosInStore.remove(v);
+			rental += countRental(v, days);
+		}
+		recordRental(vList, days, c, rental);
 		setTurnover(getTurnover() + rental);
-
 	}
 
-	private void recordRental(Video v, int days, Customer c, float rental) {
-		RentalRecord newRecord = new RentalRecord();
+	public void returnVideo(Video v) {
+		videosInStore.add(v);
+	}
+
+	private void recordRental(List<Video> vList, int days, Customer c, float rental) {
+		RentalRecord newRecord = new RentalRecord(vList, days, c, rental);
 		rentalRecords.add(newRecord);
 	}
 
 	public float countRental(Video v, int days) {
 		return v.getRentPrice() * (float) days;
+	}
+
+	public void passOneDay() {
+
+		for (RentalRecord rr : rentalRecords) {
+			rr.decreaseRemaingRentDays();
+			if (rr.returning)
+				rr.returnVideos(this);
+		}
 	}
 
 	// *** getters & setters ***
@@ -91,6 +108,10 @@ public class VideoRentalStore {
 
 	public List<RentalRecord> getRentalRecords() {
 		return rentalRecords;
+	}
+
+	public int getVideosInStoreCount() {
+		return videosInStore.size();
 	}
 
 	public List<RentalRecord> getCompletedRentalRecords() {

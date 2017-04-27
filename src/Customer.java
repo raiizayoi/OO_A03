@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 	private String name;
@@ -11,17 +13,26 @@ public class Customer {
 	}
 
 	public void rentVideosFromStore(VideoRentalStore rt) {
-
+		//the maximum number of videos that can be rented.
+		int rentableCount = Math.min(rt.getCustMaxRentCount() - rentedVideoCount, rt.getVideosInStoreCount());
 		int rentCount = rentbehavior.getRentVideoCount();
+		if (rentCount > rentableCount)
+			rentCount = rentableCount;
 		int days = rentbehavior.getRentDays();
+		List<Video> videosToBeRented = new ArrayList<Video>();
 		for (int i = 0; i < rentCount; i++) {
-			Video v = rentbehavior.pickVideo(rt.getVideosInStore());
-			rt.rentOutVideos(v, days, this);
+			Video v = rt.getVideosInStore().get(i);
+			videosToBeRented.add(v);
+			rentedVideoCount++;
 		}
-
+		rt.rentVideos(videosToBeRented, days, this);
 	}
 
 	// *** getters & setters ***
+	public void setRentedCount(int c)
+	{
+		rentedVideoCount = c;
+	}
 
 	public void setRentBehavior(RentBehavior rb) {
 		rentbehavior = rb;

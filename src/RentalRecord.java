@@ -7,25 +7,45 @@ public class RentalRecord {
 	private float rental;
 	private int remainingRentDays;
 	public boolean isActive;
+	public boolean returning;
+
+	public RentalRecord(List<Video> vList, int days, Customer c, float rental) {
+		this.isActive = true;
+		this.returning = false;
+		this.rentedVideos = vList;
+		this.rentDays = days;
+		this.remainingRentDays = days;
+		this.rentCustomer = c;
+		this.rental = rental;
+	}
 
 	public void decreaseRemaingRentDays() {
 		if (isActive) {
 			remainingRentDays--;
-			if (remainingRentDays < 0)
-				isActive = false;
+			if (remainingRentDays <= 0)
+				// mark the rentalRecord the videos in this rental has to be
+				// returned
+				returning = true;
 		}
-
 	}
 
-	public String toString()
-	{
+	public void returnVideos(VideoRentalStore rentalStore) {
+		this.returning = false;
+		this.isActive = false;
+		rentCustomer.setRentedCount(0);
+		for (Video v : rentedVideos) {
+			rentalStore.returnVideo(v);
+		}
+	}
+
+	public String toString() {
 		String custString = "Customer : " + rentCustomer.getName();
 		String videosString = "Videos : ";
-		for (int i = 0 ;i < rentedVideos.size() ; i++)
-			videosString += rentedVideos.get(i).getVideoName() + " ";
-		String rentDayString = "Rent For " + rentDays +"days";
+		for (Video v : rentedVideos)
+			videosString += "'" + v.getVideoName() + "' ";
+		String rentDayString = "Rent For " + rentDays + " days";
 		String rentalString = "Cost " + rental + " dollars\n";
-		return custString + " " + videosString + rentDayString + " " + rentalString;
+		return custString + ", " + videosString + ", " + rentDayString + ", " + rentalString + ".";
 	}
 
 	// *** getters & setters ***
